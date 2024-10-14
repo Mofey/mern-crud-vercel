@@ -27,10 +27,10 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Add a simple route to check if the server is running
 app.get('/', (req, res) => {
-    res.send('Hello');
+    res.send('Server is running');
 });
 
-app.use("/api/products", productRoutes);
+app.use("/products", productRoutes);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/frontend/dist")));
