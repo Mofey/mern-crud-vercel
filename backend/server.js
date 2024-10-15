@@ -15,7 +15,7 @@ const __dirname = path.resolve();
 
 // CORS configuration
 app.use(cors({
-    origin: 'https://your-frontend-domain.vercel.app', // Replace with your frontend URL
+    origin: 'https://mern-crud-vercel-eight.vercel.app/', // Replace with your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true // if you need to handle cookies or authentication
 }));
