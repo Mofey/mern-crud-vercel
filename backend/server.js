@@ -13,11 +13,21 @@ const PORT = process.env.PORT || 5000;
 
 const __dirname = path.resolve();
 
-// CORS configuration
+const allowedOrigins = [
+    'https://mern-crud-vercel-eight.vercel.app', // Your frontend URL
+    'http://localhost:3000' // For local development
+];
+
 app.use(cors({
-    origin: 'https://mern-crud-vercel-eight.vercel.app/', // Replace with your frontend URL
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, origin);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true // if you need to handle cookies or authentication
+    credentials: true
 }));
 
 app.use(express.json()); // allows us to accept JSON data in the req.body
