@@ -1,9 +1,7 @@
 import { create } from 'zustand';
 
 // Replace with your actual backend URL
-const BACKEND_URL = process.env.NODE_ENV === 'production'
-    ? 'https://mern-crud-vercel-api.vercel.app/' // Replace with your actual backend URL
-    : '/api/products';
+const BACKEND_URL = 'https://mern-crud-vercel-api.vercel.app/';
 
 export const useProductStore = create((set) => ({
     products: [],
