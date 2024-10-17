@@ -23,11 +23,6 @@ app.use(cors({
 
 app.use(express.json()); // allows us to accept JSON data in the req.body
 
-// Add a simple route to check if the server is running
-app.get('/', (req, res) => {
-    res.send('Server is running');
-});
-
 // Product routes
 app.use("/api/products", productRoutes);
 
@@ -38,9 +33,15 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
+
 app.listen(PORT, () => {
     connectDB();
     console.log("Server started at http://localhost:" + PORT);
+});
+
+// Add a simple route to check if the server is running
+app.get('/', (req, res) => {
+    res.send('Server is running');
 });
 
 export default app;
