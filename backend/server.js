@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { connectDB } from './config/db.js';
 import Product from './models/product.model.js';
-import favicon from 'serve-favicon';
+// import favicon from 'serve-favicon';
 import cors from 'cors';
 
 dotenv.config();
@@ -33,7 +33,7 @@ app.use(cors({
 app.use(express.json()); // allows us to accept JSON data in the req.body
 
 // Serve favicon
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Add a simple route to check if the server is running
 app.get('/', (req, res) => {
