@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 // Replace with your actual backend URL
-const BACKEND_URL = 'https://mern-crud-vercel-api.vercel.app/api/products' || '/api/products';
+const BACKEND_URL = '/api/products' || 'https://mern-crud-vercel-api.vercel.app/api/products';
 
 export const useProductStore = create((set) => ({
     products: [],
@@ -11,7 +11,7 @@ export const useProductStore = create((set) => ({
         if (!newProduct.name || !newProduct.price || !newProduct.image) {
             return { success: false, message: 'Please fill all fields' };
         }
-        const res = await fetch(`${BACKEND_URL}`, {
+        const res = await fetch(BACKEND_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ export const useProductStore = create((set) => ({
     },
     fetchProducts: async () => {
         try {
-            const res = await fetch(`${BACKEND_URL}`);
+            const res = await fetch(BACKEND_URL);
             if (!res.ok) {
                 throw new Error(`Failed to fetch products: ${res.statusText}`);
             }
