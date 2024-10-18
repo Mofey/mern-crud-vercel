@@ -4,8 +4,6 @@ import path from 'path';
 import { connectDB } from './config/db.js';
 import productRoutes from './routes/product.routes.js';
 import cors from 'cors';
-import serverless from 'serverless-http';
-import favicon from 'serve-favicon';
 
 dotenv.config();
 
@@ -25,9 +23,6 @@ app.use(cors({
 
 app.use(express.json()); // allows us to accept JSON data in the req.body
 
-// Serve favicon
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
 // Add a simple route to check if the server is running
 app.get('/', (req, res) => {
     res.send('Server is running');
@@ -36,16 +31,9 @@ app.get('/', (req, res) => {
 // Product routes
 app.use("/api/products", productRoutes);
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "/frontend/dist")));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-    });
-}
-
 app.listen(PORT, () => {
     connectDB();
     console.log("Server started at http://localhost:" + PORT);
 });
 
-export const handler = serverless(app);
+export default app;
