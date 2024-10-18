@@ -4,6 +4,7 @@ import path from 'path';
 import { connectDB } from './config/db.js';
 import productRoutes from './routes/product.routes.js';
 import cors from 'cors';
+import serverless from 'serverless-http';
 
 dotenv.config();
 
@@ -43,4 +44,4 @@ app.listen(PORT, () => {
     console.log("Server started at http://localhost:" + PORT);
 });
 
-export default app;
+export const handler = serverless(app);
